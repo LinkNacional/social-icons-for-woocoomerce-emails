@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 function siwce_get_icon_list () {
 	return apply_filters( 'siwce_social_links', array(
 		'facebook' => 'Facebook',

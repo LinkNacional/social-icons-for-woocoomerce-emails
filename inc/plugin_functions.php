@@ -1,15 +1,18 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 function siwce_email_social_icons ( $footer_content ) {
 	$icons = siwce_get_used_icons();
+
+	if ( empty( $icons ) ) return $footer_content;
+
 	$text_before_icons = get_option( 'siwce_text_before_icons' );
 	$img_size = get_option( 'siwce_img_width' );
 
 	$img_size = empty( $img_size ) ? siwce_get_icon_default_size() : esc_attr( $img_size );
 
 	ob_start();
-
-	if ( empty( $icons ) ) return $footer_content;
 
 	if ( ! empty( $text_before_icons ) ) :
 	?>
@@ -39,7 +42,7 @@ function siwce_email_social_icons ( $footer_content ) {
 		?>
 
 						<td valign="middle" id="siwce_icon_<?php echo esc_attr( $icon['name'] ); ?>">
-							<a href="<?php echo esc_url( $icon['href'] ); ?>" title="<?php echo $icon['name']; ?>"><img
+							<a href="<?php echo esc_url( $icon['href'] ); ?>" title="<?php echo esc_attr( $icon['name'] ); ?>"><img
 								alt="<?php echo esc_attr( $icon['name'] ); ?>"
 								src="<?php echo esc_attr( $icon['image_src'] ); ?>"
 								width="<?php echo esc_attr( $img_size ); ?>"
@@ -65,7 +68,7 @@ function siwce_email_social_icons ( $footer_content ) {
 	<table width="100%" border="0" cellpadding="10" cellspacing="10">
 		<!-- foter text -->
 		<tr>
-			<td valign="middle"><?php echo $footer_content; ?></td>
+			<td valign="middle"><?php echo wp_kses_post( $footer_content ); ?></td>
 		</tr>
 	</table>
 
@@ -79,30 +82,32 @@ function siwce_social_icons_settings( $settings ) {
 	$icons = siwce_get_icon_list();
 
 	$settings[] = array(
-		'title' => __( 'Social Icons', 'siwce' ),
-		'desc' => __( 'Leave in blank the social networks url that you don\'t use.', 'siwce' ),
+		'title' => __( 'Social Icons', 'social-icons-for-woocoomerce-emails' ),
+		'desc' => __( 'Leave in blank the social networks url that you don\'t use.', 'social-icons-for-woocoomerce-emails' ),
 		'type' => 'title',
 		'id' => 'siwce'
 	);
 
 	$settings[] = array(
-		'title' => __( 'Icon size', 'siwce' ),
+		'title' => __( 'Icon size', 'social-icons-for-woocoomerce-emails' ),
 		'id' => 'siwce_img_width',
 		'type' => 'text',
-		'desc' => __( 'Don\'t use any unit like "px", "em", etc.', 'siwce' ),
-		'placeholder' => sprintf( __( 'default value is %s',  'siwce' ), siwce_get_icon_default_size() )
+		'desc' => __( 'Don\'t use any unit like "px", "em", etc.', 'social-icons-for-woocoomerce-emails' ),
+		/* translators: %s: default icon size in pixels */
+		'placeholder' => sprintf( __( 'default value is %s', 'social-icons-for-woocoomerce-emails' ), siwce_get_icon_default_size() )
 	);
 
 	$settings[] = array(
-		'title' => __( 'Text before of icons', 'siwce' ),
+		'title' => __( 'Text before of icons', 'social-icons-for-woocoomerce-emails' ),
 		'id' => 'siwce_text_before_icons',
 		'type' => 'text',
-		'placeholder' => __( 'Example: Follow us', 'siwce' )
+		'placeholder' => __( 'Example: Follow us', 'social-icons-for-woocoomerce-emails' )
 	);
 
 	foreach($icons as $id => $name) {
 		$settings[] = array(
-			'title' => sprintf( __( '%s URL',  'siwce' ), $name ),
+			/* translators: %s: social network name */
+			'title' => sprintf( __( '%s URL', 'social-icons-for-woocoomerce-emails' ), $name ),
 			'id' => 'siwce_url_' . $id,
 			'type' => 'text'
 		);
@@ -132,8 +137,5 @@ function siwce_text_before_icons_style ( $css ) {
 }
 
 function siwce_load_plugin_textdomain () {
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'siwce' );
-
-		load_textdomain( 'siwce', trailingslashit( WP_LANG_DIR ) . 'siwce/siwce-' . $locale . '.mo' );
-		load_plugin_textdomain( 'siwce', false, dirname( plugin_basename( SIWCE_FILE ) ) . '/languages/' );
+	load_plugin_textdomain( 'social-icons-for-woocoomerce-emails', false, dirname( plugin_basename( SIWCE_FILE ) ) . '/languages/' );
 }

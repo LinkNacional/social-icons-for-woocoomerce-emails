@@ -1,0 +1,66 @@
+# TODO remove file after release
+name: Generate new pre-release release for plugin
+
+on:
+  pull_request:
+    types: [ closed ]
+    branches: [ pre-release ]
+
+env:
+  PLUGIN_NAME: social-icons-for-woocoomerce-emails
+  DIR_NAME: social-icons-for-woocoomerce-emails
+  PHP_VERSION: "7.4"
+  DEPLOY_TAG: "2.2.0"
+
+jobs:
+  release-build:
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'release')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: pre-release
+
+    # Add plugin files to a root directory
+    - name: Prepare plugin folder
+      run: |
+        mkdir -p dist
+        mkdir -p build/${{ env.PLUGIN_NAME }}
+        mv ./inc ./languages ./static *.php *.txt LICENSE ./build/${{ env.PLUGIN_NAME }}
+        find ./build -type f -exec chmod 0644 {} +
+        find ./build -type d -exec chmod 0755 {} +
+
+    # Compact plugin as .zip
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        path: '.'
+        directory: 'build'
+        filename: '${{ env.PLUGIN_NAME }}.zip'
+        exclusions: '*.git* /*node_modules/* .editorconfig'
+
+    - name: Move .zip to custom location
+      run: |
+        mv ./build/${{ env.PLUGIN_NAME }}.zip ./dist/
+
+    # Update version tag
+    - name: Bump version and push tag
+      id: tag_version
+      uses: mathieudutour/github-tag-action@v6.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        custom_tag: ${{ env.DEPLOY_TAG }}
+
+    # Generate new release
+    - name: Generate new Release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "dist/${{ env.PLUGIN_NAME }}.zip"
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit: "pre-release"
+        draft: true
+        tag: ${{ steps.tag_version.outputs.new_tag }}
+        name: Release ${{ steps.tag_version.outputs.new_tag }}

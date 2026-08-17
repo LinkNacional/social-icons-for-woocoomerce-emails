@@ -1,0 +1,35 @@
+name: Deploy Plugin to WordPress.org
+
+on:
+  workflow_dispatch:
+
+env:
+  PLUGIN_NAME: social-icons-for-woocoomerce-emails
+  PHP_VERSION: "7.4"
+  DEPLOY_TAG: "2.2.0"
+
+jobs:
+  deploy-to-wp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch main
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Prepare plugin folder
+        run: |
+          mkdir -p build/${{ env.PLUGIN_NAME }}
+          mv ./inc ./languages ./static *.php *.txt LICENSE ./build/${{ env.PLUGIN_NAME }}
+          find ./build -type f -exec chmod 0644 {} +
+          find ./build -type d -exec chmod 0755 {} +
+
+      - name: Deploy para WordPress.org
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        env:
+          VERSION: ${{ env.DEPLOY_TAG }}
+          SLUG: social-icons-for-woocoomerce-emails
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          ASSETS_DIR: wp-assets
+          BUILD_DIR: build/${{ env.PLUGIN_NAME }}
