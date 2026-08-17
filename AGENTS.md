@@ -79,6 +79,11 @@ $wpdb->prepare("SELECT * FROM $wpdb->postmeta WHERE meta_key = %s", $key);
 - Toda string visível ao usuário: `__()`, `_e()`, `_n()`
 - Text domain: `social-icons-for-woocoomerce-emails` (deve coincidir com o slug; exigência do WordPress.org Plugin Check)
 
+### Datas e fuso horário
+- Sempre usar fuso brasileiro (`America/Sao_Paulo`, UTC-3) para calcular datas de release/changelog.
+- `CHANGELOG.md` → pt-BR, data no padrão BR `dd/mm/aaaa` (ex.: `16/08/2026`).
+- `readme.txt` → inglês, data no padrão `aaaa-mm-dd` (ex.: `2026-08-16`).
+
 ### Slug (WordPress.org) — NÃO ALTERAR
 - `social-icons-for-woocoomerce-emails` (com typo "woocoomerce" — é o slug real no WP.org).
 - NÃO renomear a pasta nem o arquivo principal `social-icons-for-woocoomerce-emails.php`.

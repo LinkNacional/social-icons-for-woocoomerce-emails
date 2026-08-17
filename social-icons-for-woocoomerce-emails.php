@@ -2,7 +2,9 @@
 /*
 Plugin Name: Social Icons for WooCommerce Emails
 Description: Add social icons on footer of your WooCommerce emails.
-Version: 2.1.1
+Version: 2.2.0
+Requires at least: 6.0
+Requires PHP: 8.2
 Author: Link Nacional
 Author URI: https://linknacional.com.br/
 License: GPLv3
@@ -13,7 +15,7 @@ Domain Path: /languages/
 
 if ( ! defined( 'ABSPATH' ) ) die;
 
-define( 'SIWCE_PLUGIN_VERSION', '2.0.4' );
+define( 'SIWCE_PLUGIN_VERSION', '2.2.0' );
 define( 'SIWCE_SLUG', 'social-icons-for-woocoomerce-emails' );
 define( 'SIWCE_FILE', __FILE__ );
 define( 'SIWCE_DIR', dirname( __FILE__ ) );

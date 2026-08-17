@@ -1,9 +1,10 @@
 === Social Icons for WooCommerce Emails ===
 Contributors: linknacional
 Donate link: https://linknacional.com.br/
-Requires at least: 4.0
+Requires at least: 6.0
+Requires PHP: 8.2
 Tested up to: 7.1
-Stable tag: 2.1.1
+Stable tag: 2.2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Tags: woocommerce, email, social, links, footer
@@ -65,6 +66,12 @@ function yourprefix_change_facebook_icon( $uri, $icon_id ) {
 2. WooCommerce > Settings > Emails page
 
 == Changelog ==
+
+= 2.2.0 - 2026-08-17 =
+* Fixed first-install rendering: icons without a configured URL are no longer output and icon size falls back to the default (48px) when the option is not yet saved
+* Removed compiled translation files (.po/.mo), keeping only the .pot template
+* Added WordPress.org directory banners (wp-assets)
+* WordPress.org compliance adjustments in the plugin header and readme.txt
 
 = 2.1.1 =
 * Some fixes

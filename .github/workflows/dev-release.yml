@@ -10,7 +10,7 @@ env:
   PLUGIN_NAME: social-icons-for-woocoomerce-emails
   DIR_NAME: social-icons-for-woocoomerce-emails
   PHP_VERSION: "7.4"
-  DEPLOY_TAG: "2.1.1"
+  DEPLOY_TAG: "2.2.0"
 
 jobs:
   release-build:

@@ -14,6 +14,7 @@ O usuário pode passar os valores diretamente: `"version=2.2.0 tested_up=6.7 php
 - **version** — nova versão (Stable tag)
 - **tested_up** — versão do WP testada (Tested up to)
 - **php** — versão mínima do PHP (Requires PHP)
+- **wp_min** — versão mínima do WordPress (Requires at least; default 6.0)
 - **highlights** — resumo da versão (opcional, usa git log se vazio)
 
 ## Fluxo de execução
@@ -24,15 +25,13 @@ Se não recebidos via arguments, pergunte ao usuário um por um. Detecte a vers�
 grep -E "Version:|SIWCE_PLUGIN_VERSION" *.php
 ```
 
-### 2. Capturar git log
-```bash
-LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null)
-if [ -z "$LAST_TAG" ]; then
-    git log -n 10 --oneline
-else
-    git log ${LAST_TAG}..HEAD --oneline
-fi
-```
+### 2. Analisar as mudanças reais (NÃO copiar os comentários dos commits)
+Os bullets do changelog devem descrever o **efeito real** das mudanças, não o texto dos `git log`.
+1. Liste os arquivos alterados: `git diff --stat ${LAST_TAG}..HEAD`
+2. Leia o diff dos arquivos de código: `git diff ${LAST_TAG}..HEAD -- inc/ *.php`
+3. Escreva cada bullet como "o que mudou para o usuário", ex.: "ícones sem URL não são mais renderizados" em vez de "correção na verificação dos campos".
+
+Só se não for possível ler o diff, use os comentários dos commits como pista — nunca como texto final.
 
 ### 3. Atualizar TODOS os arquivos com versão
 
@@ -41,6 +40,7 @@ A versão aparece em **7 locais** espalhados por **7 arquivos**. Atualize todos:
 #### 3a. `readme.txt`
 - `Stable tag:` → nova versão
 - `Tested up to:` e `Requires PHP:` se alterados
+- `Requires at least:` se alterado (versão mínima do WP)
 - Adicionar entrada no topo da seção `== Changelog ==`, **em inglês**, preservando o formato atual (`= VERSION =` + bullets + linha em branco antes da versão anterior):
   ```
   = 2.2.0 =
@@ -61,6 +61,7 @@ A versão aparece em **7 locais** espalhados por **7 arquivos**. Atualize todos:
 
 #### 3c. `social-icons-for-woocoomerce-emails.php`
 - `* Version: NOVA_VERSION` (cabeçalho do plugin)
+- `* Requires at least:` e `* Requires PHP:` — manter em sincronia com o `readme.txt`
 - `define( 'SIWCE_PLUGIN_VERSION', 'NOVA_VERSION' );` (constante)
 
 #### 3d. `.github/workflows/main.yml`
@@ -92,3 +93,5 @@ grep -rn "NOVA_VERSAO" --include="*.php" --include="*.md" --include="*.txt" --in
 - Não há `release-candidate.yml`; o pré-release usa `dev-release.yml`.
 - Assets do WP.org ficam em `wp-assets/` (não `.wp-org`).
 - O changelog do `readme.txt` usa formato `= VERSION =` (WordPress clássico), **diferente** do `CHANGELOG.md` que usa `# VERSION`.
+- **Requires at least / Requires PHP**: devem existir **tanto** no cabeçalho PHP quanto no `readme.txt`, com valores idênticos (WP mínimo `6.0`, PHP mínimo `8.2`).
+- **Datas de release**: fuso `America/Sao_Paulo`. `readme.txt` → `aaaa-mm-dd`; `CHANGELOG.md` → `dd/mm/aaaa`.
