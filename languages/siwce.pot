@@ -49,7 +49,7 @@ msgid "%s URL"
 msgstr ""
 
 #. Name of the plugin
-msgid "Social Icons for WooCoomerce Emails"
+msgid "Social Icons for WooCommerce Emails"
 msgstr ""
 
 #. Description of the plugin
@@ -57,9 +57,9 @@ msgid "Add social icons on footer of your WooCommerce emails."
 msgstr ""
 
 #. Author of the plugin
-msgid "Luiz Bills"
+msgid "Link Nacional"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://luizp.com"
+msgid "https://linknacional.com.br/"
 msgstr ""

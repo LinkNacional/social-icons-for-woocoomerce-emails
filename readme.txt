@@ -1,6 +1,6 @@
-=== Social Icons for WooCoomerce Emails ===
-Contributors: luizbills
-Donate link: https://luizpb.com/donate
+=== Social Icons for WooCommerce Emails ===
+Contributors: linknacional
+Donate link: https://linknacional.com.br/
 Requires at least: 4.0
 Tested up to: 6.0
 Stable tag: 2.1.1
@@ -16,17 +16,17 @@ Add social icons to your WooCommerce emails.
 
 #### SETUP
 
-Go to WooCoomerce > Settings > Emails to configure the plugin.
+Go to WooCommerce > Settings > Emails to configure the plugin.
 
 #### USEFUL LINKS
 
-Github: https://github.com/luizbills/social-icons-for-woocommerce-emails
+Github: https://github.com/LinkNacional/social-icons-for-woocommerce-emails
 
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/social-icons-for-wc-emails` directory, or install the plugin through the WordPress plugins screen directly.
 1. Activate the plugin through the 'Plugins' screen in WordPress.
-1. Go to WooCoomerce > Settings > Emails to configure the plugin.
+1. Go to WooCommerce > Settings > Emails to configure the plugin.
 
 == Frequently Asked Questions ==
 
@@ -62,7 +62,7 @@ function yourprefix_change_facebook_icon( $uri, $icon_id ) {
 
 1. Default icons appearance
 
-2. WooCoomerce > Settings > Emails page
+2. WooCommerce > Settings > Emails page
 
 == Changelog ==
 

@@ -1,0 +1,20 @@
+{
+    "name": "lkn/social-icons-for-woocoomerce-emails",
+    "type": "project",
+    "license": "Proprietary",
+    "authors": [
+        {
+            "name": "Link Nacional",
+            "email": "ticket@linknacional.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phan/phan": "5.4.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}

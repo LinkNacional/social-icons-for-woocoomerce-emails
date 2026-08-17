@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Social Icons for WooCoomerce Emails
+Plugin Name: Social Icons for WooCommerce Emails
 Description: Add social icons on footer of your WooCommerce emails.
 Version: 2.1.1
-Author: Luiz Bills
-Author URI: https://www.luizpb.com
+Author: Link Nacional
+Author URI: https://linknacional.com.br/
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: siwce

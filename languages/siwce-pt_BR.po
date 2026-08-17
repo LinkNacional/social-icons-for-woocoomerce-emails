@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Social Icons for WooCoomerce Emails\n"
+"Project-Id-Version: Social Icons for WooCommerce Emails\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-16 02:56+0000\n"
 "PO-Revision-Date: 2017-05-16 02:56+0000\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Generator: Loco - https://localise.biz/"
 
 #. Author URI of the plugin
-msgid "https://luizp.com"
-msgstr "https://luizp.com"
+msgid "https://linknacional.com.br/"
+msgstr "https://linknacional.com.br/"
 
 #: inc/plugin_functions.php:82
 msgid "Social Icons"
@@ -52,7 +52,7 @@ msgid "%s URL"
 msgstr "Link do %s"
 
 #. Name of the plugin
-msgid "Social Icons for WooCoomerce Emails"
+msgid "Social Icons for WooCommerce Emails"
 msgstr "Ícones das Redes Sociais para Emails do WooCommerce"
 
 #. Description of the plugin
@@ -61,5 +61,5 @@ msgstr ""
 "Adicione ícones das redes sociais ao rodapé dos seus e-mails do WooCommerce."
 
 #. Author of the plugin
-msgid "Luiz Bills"
-msgstr "Luiz Bills"
+msgid "Link Nacional"
+msgstr "Link Nacional"
