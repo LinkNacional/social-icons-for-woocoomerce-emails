@@ -2,14 +2,15 @@
 
 function siwce_email_social_icons ( $footer_content ) {
 	$icons = siwce_get_used_icons();
+
+	if ( empty( $icons ) ) return $footer_content;
+
 	$text_before_icons = get_option( 'siwce_text_before_icons' );
 	$img_size = get_option( 'siwce_img_width' );
 
 	$img_size = empty( $img_size ) ? siwce_get_icon_default_size() : esc_attr( $img_size );
 
 	ob_start();
-
-	if ( empty( $icons ) ) return $footer_content;
 
 	if ( ! empty( $text_before_icons ) ) :
 	?>
