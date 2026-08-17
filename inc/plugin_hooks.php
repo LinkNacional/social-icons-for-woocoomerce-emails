@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 add_action( 'init', 'siwce_load_plugin_textdomain' );
 
 add_filter( 'woocommerce_email_footer_text' , 'siwce_email_social_icons' );

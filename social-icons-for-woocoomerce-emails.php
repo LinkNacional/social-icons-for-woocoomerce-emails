@@ -7,7 +7,7 @@ Author: Link Nacional
 Author URI: https://linknacional.com.br/
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
-Text Domain: siwce
+Text Domain: social-icons-for-woocoomerce-emails
 Domain Path: /languages/
 */
 

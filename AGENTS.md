@@ -77,7 +77,7 @@ $wpdb->prepare("SELECT * FROM $wpdb->postmeta WHERE meta_key = %s", $key);
 
 ### Internacionalização
 - Toda string visível ao usuário: `__()`, `_e()`, `_n()`
-- Text domain: `siwce`
+- Text domain: `social-icons-for-woocoomerce-emails` (deve coincidir com o slug; exigência do WordPress.org Plugin Check)
 
 ### Slug (WordPress.org) — NÃO ALTERAR
 - `social-icons-for-woocoomerce-emails` (com typo "woocoomerce" — é o slug real no WP.org).
